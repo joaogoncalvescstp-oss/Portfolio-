@@ -17,7 +17,7 @@ body {
   color: var(--text);
   font: 400 16px/1.6 Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3 { font-family: 'Space Grotesk', Inter, sans-serif; line-height: 1.1; letter-spacing: -0.02em; }
@@ -118,6 +118,22 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
 .count { color: var(--muted); font-size: 0.85rem; min-width: 3.5em; text-align: right; font-variant-numeric: tabular-nums; }
 .slider.single .slider-bar { display: none; }
 
+/* FULL-SCREEN PANORAMA (street elevations)
+   The section is made tall by js/pano.js; its sticky child fills the screen
+   while vertical scrolling slides the strip of images sideways. */
+.pano { position: relative; width: 100vw; margin: clamp(56px, 8vw, 96px) 0 0 calc(50% - 50vw); }
+.pano-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #050609; }
+.pano-track { display: flex; height: 100%; width: max-content; will-change: transform; }
+.pano-track .shot { display: block; height: 100%; flex: none; cursor: zoom-in; }
+.pano-track img { display: block; height: 100%; width: auto; aspect-ratio: auto; object-fit: fill; }
+.pano-ui { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 16px;
+  padding: 14px clamp(16px, 4vw, 48px); background: linear-gradient(to top, rgba(5, 6, 9, 0.85), rgba(5, 6, 9, 0)); pointer-events: none; }
+.pano-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pano-progress { flex: 1; height: 3px; background: var(--line); min-width: 40px; }
+.pano-progress span { display: block; height: 100%; width: 0; background: var(--accent-2); }
+.pano-hint { color: var(--muted); font-size: 0.85rem; white-space: nowrap; transition: opacity 0.3s; }
+.pano.started .pano-hint { opacity: 0; }
+
 /* LIGHTBOX */
 .lightbox { margin: auto; padding: 0; border: 0; background: transparent; max-width: 100vw; max-height: 100vh;
   width: 100vw; height: 100vh; overflow: hidden; }
@@ -183,6 +199,7 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
   .project { grid-template-columns: 1fr; }
   .viewer { aspect-ratio: 3 / 4; min-height: 0; }
   .nav nav a[href="#about"] { display: none; }
+  .pano-title { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

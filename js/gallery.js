@@ -84,7 +84,7 @@
     items.forEach((shot, i) => {
       shot.addEventListener('click', (e) => {
         e.preventDefault();
-        shot.closest('.slider').querySelector('.play.active')?.click(); // pause slideshow
+        shot.closest('.slider')?.querySelector('.play.active')?.click(); // pause slideshow
         shots = items;
         show(i);
         box.showModal();
