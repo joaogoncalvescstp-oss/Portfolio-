@@ -33,4 +33,4 @@ The result is 1.8 MB with about 290k triangles. To show a different model, repla
 
 ## Editing content
 
-Text placeholders are marked `TODO` in `index.html` (bio, projects, contact email).
+Text placeholders are marked `TODO` in `index.html` (bio, contact email). Project photos live in `assets/img/` as WebP (full size plus an 800px `-thumb`), resized and stripped of metadata from the originals.

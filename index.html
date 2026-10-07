@@ -36,9 +36,9 @@
     <section class="hero">
       <canvas id="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero-content">
-        <p class="eyebrow">Portfolio · 3D Design</p>
+        <p class="eyebrow">Portfolio · Jewellery · Architecture</p>
         <h1>João <span class="grad">Lleto</span></h1>
-        <p class="lead">3D modelling, product design and real-time visualisation.</p>
+        <p class="lead">Jewellery, 3D modelling and urban design, from sketch to casting.</p>
         <div class="cta">
           <a class="btn primary" href="#viewer">Explore the model</a>
           <a class="btn ghost" href="#contact">Get in touch</a>
@@ -51,14 +51,14 @@
       <div class="container two-col">
         <div>
           <p class="eyebrow">About</p>
-          <h2>Designing objects you can hold — and spin.</h2>
+          <h2>Inspired by nature, built in 3D.</h2>
         </div>
         <div class="prose">
-          <!-- TODO: replace with the bio from the old Wix site -->
-          <p>Hi, I'm João. I design and model 3D objects, from concept sketches to production-ready meshes.
-             This site replaces my old Wix page with something faster, and every model is shown in a real-time viewer.</p>
+          <!-- TODO: replace with your own bio -->
+          <p>Hi, I'm João. I design jewellery inspired by natural structures like crystals and diatoms. I model each piece in 3D, then cast it in metal.
+             I also work on architectural and urban design, from site masterplans to 3D massing renders.</p>
           <ul class="tags">
-            <li>3D Modelling</li><li>Product Design</li><li>CAD</li><li>Rendering</li><li>Vectary</li><li>WebGPU</li>
+            <li>Jewellery Design</li><li>3D Modelling</li><li>Metal Casting</li><li>Urban Design</li><li>Architectural Rendering</li><li>Vectary</li><li>SketchUp</li>
           </ul>
         </div>
       </div>
@@ -69,30 +69,69 @@
         <p class="eyebrow">Selected work</p>
         <h2>Projects</h2>
         <div class="grid">
-          <!-- TODO: replace these cards with projects from the old site -->
-          <article class="card featured">
-            <div class="card-thumb thumb-a"></div>
+          <a class="card" href="#p-ring">
+            <img class="card-thumb" src="assets/img/ring-photo-thumb.webp" alt="Silver crystal ring resting on a quartz cluster" loading="lazy">
             <div class="card-body">
               <h3>Crystal Ring</h3>
-              <p>A ring with a crown of crystal growth, modelled in Vectary. Spin it in 3D below.</p>
-              <a href="#viewer" class="link">Open in viewer →</a>
+              <p>A silver ring crowned with crystal growth, modelled in 3D and cast in metal.</p>
             </div>
-          </article>
-          <article class="card">
-            <div class="card-thumb thumb-b"></div>
+          </a>
+          <a class="card" href="#p-keiso">
+            <img class="card-thumb" src="assets/img/diatom-keiso-box-thumb.webp" alt="Keisō diatom jewellery set in its gift box" loading="lazy">
             <div class="card-body">
-              <h3>Project Two</h3>
-              <p>Short description of the project, tools used and outcome.</p>
+              <h3>Keisō: Diatom Jewellery</h3>
+              <p>Pendants and earrings based on the glass shells of diatoms, single-celled algae.</p>
             </div>
-          </article>
-          <article class="card">
-            <div class="card-thumb thumb-c"></div>
+          </a>
+          <a class="card" href="#p-housing">
+            <img class="card-thumb" src="assets/img/housing-1-thumb.webp" alt="Aerial render of a residential masterplan beside a canal" loading="lazy">
             <div class="card-body">
-              <h3>Project Three</h3>
-              <p>Short description of the project, tools used and outcome.</p>
+              <h3>Residential Masterplan</h3>
+              <p>A neighbourhood of terraced housing, apartments, green streets and a canal-side boulevard.</p>
             </div>
-          </article>
+          </a>
         </div>
+
+        <!-- Project galleries: click any image to open it full size -->
+        <article class="project" id="p-ring">
+          <div class="project-head">
+            <h3>Crystal Ring</h3>
+            <p>Designed as a digital model, then cast in silver. The band is polished smooth and the top is covered in crystal points, shown here on a real quartz and pyrite cluster.</p>
+            <a href="#viewer" class="link">Spin the 3D model →</a>
+          </div>
+          <div class="gallery">
+            <a class="shot wide" href="assets/img/ring-photo.webp"><img src="assets/img/ring-photo-thumb.webp" alt="Crystal ring on a quartz and pyrite cluster" loading="lazy" width="800" height="536"></a>
+          </div>
+        </article>
+
+        <article class="project" id="p-keiso">
+          <div class="project-head">
+            <h3>Keisō: Diatom Jewellery</h3>
+            <p>Diatoms are single-celled algae that live in shells of glass. Their cell walls have intricate patterns of silica. Keisō turns those patterns into cast pendants and earrings in gold, copper and patinated finishes, packed in a box with the story printed inside.</p>
+          </div>
+          <div class="gallery five">
+            <a class="shot" href="assets/img/diatom-keiso-box.webp"><img src="assets/img/diatom-keiso-box-thumb.webp" alt="Keisō box with patinated diatom pendant, earrings and bead chain" loading="lazy" width="600" height="800"></a>
+            <a class="shot" href="assets/img/diatom-box-open.webp"><img src="assets/img/diatom-box-open-thumb.webp" alt="Open box with a card explaining what diatoms are" loading="lazy" width="600" height="800"></a>
+            <a class="shot" href="assets/img/diatom-gold.webp"><img src="assets/img/diatom-gold-thumb.webp" alt="Gold-tone triangular diatom pendant and two earrings next to a penny for scale" loading="lazy" width="600" height="800"></a>
+            <a class="shot" href="assets/img/diatom-copper.webp"><img src="assets/img/diatom-copper-thumb.webp" alt="Polished copper diatom earrings, front and back, next to a penny" loading="lazy" width="600" height="800"></a>
+            <a class="shot" href="assets/img/diatom-blue.webp"><img src="assets/img/diatom-blue-thumb.webp" alt="Blue and gold patinated diatom pendant and earrings" loading="lazy" width="600" height="800"></a>
+          </div>
+        </article>
+
+        <article class="project" id="p-housing">
+          <div class="project-head">
+            <h3>Residential Masterplan</h3>
+            <p>An urban design proposal: rows of terraced houses with private gardens, apartment blocks along a tree-lined boulevard with a timber walkway and bus route, and a canal edge to the south.</p>
+          </div>
+          <div class="gallery landscape">
+            <a class="shot" href="assets/img/housing-1.webp"><img src="assets/img/housing-1-thumb.webp" alt="Aerial view of the masterplan from the canal corner" loading="lazy" width="800" height="550"></a>
+            <a class="shot" href="assets/img/housing-2.webp"><img src="assets/img/housing-2-thumb.webp" alt="Aerial view over the terraces and central gardens" loading="lazy" width="800" height="550"></a>
+            <a class="shot" href="assets/img/housing-3.webp"><img src="assets/img/housing-3-thumb.webp" alt="Aerial view across the open green space toward the housing" loading="lazy" width="800" height="550"></a>
+            <a class="shot" href="assets/img/housing-4.webp"><img src="assets/img/housing-4-thumb.webp" alt="Street-level aerial of the boulevard, bus stop and timber walkway" loading="lazy" width="800" height="513"></a>
+            <a class="shot" href="assets/img/housing-5.webp"><img src="assets/img/housing-5-thumb.webp" alt="Massing study of the boulevard and apartment blocks in neutral grey" loading="lazy" width="800" height="550"></a>
+            <a class="shot" href="assets/img/housing-6.webp"><img src="assets/img/housing-6-thumb.webp" alt="Canal-side view of the timber walkway, tree-lined boulevard and apartment blocks" loading="lazy" width="800" height="550"></a>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -137,12 +176,21 @@
     </section>
   </main>
 
+  <dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+    <img id="lightbox-img" alt="">
+    <p id="lightbox-cap"></p>
+    <button class="lb-btn lb-close" data-act="close" aria-label="Close">✕</button>
+    <button class="lb-btn lb-prev" data-act="prev" aria-label="Previous image">‹</button>
+    <button class="lb-btn lb-next" data-act="next" aria-label="Next image">›</button>
+  </dialog>
+
   <footer class="footer">
     <p>© <span id="year"></span> João Lleto · Rendered with WebGPU</p>
   </footer>
 
   <script type="module" src="js/hero.js"></script>
   <script type="module" src="js/viewer.js"></script>
+  <script src="js/gallery.js" defer></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
