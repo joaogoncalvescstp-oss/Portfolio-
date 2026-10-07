@@ -66,49 +66,14 @@
       <div class="container">
         <p class="eyebrow">Selected work</p>
         <h2>Projects</h2>
-        <h3 class="group-label">Jewelry Design</h3>
-        <div class="grid">
-          <a class="card" href="#p-ring">
-            <img class="card-thumb" src="assets/img/ring-photo-thumb.webp" alt="Silver crystal ring resting on a quartz cluster" loading="lazy">
-            <div class="card-body">
-              <h3>Crystal Ring</h3>
-              <p>A silver ring crowned with crystal growth, modelled in 3D and cast in metal.</p>
-            </div>
-          </a>
-          <a class="card" href="#p-keiso">
-            <img class="card-thumb" src="assets/img/diatom-keiso-box-thumb.webp" alt="Keisō diatom jewellery set in its gift box" loading="lazy">
-            <div class="card-body">
-              <h3>Keisō: Diatom Jewellery</h3>
-              <p>Pendants and earrings based on the glass shells of diatoms, single-celled algae.</p>
-            </div>
-          </a>
-        </div>
-        <h3 class="group-label">Architecture</h3>
-        <div class="grid">
-          <a class="card" href="#p-kings-island">
-            <img class="card-thumb" src="assets/img/housing-1-thumb.webp" alt="Aerial render of a residential masterplan beside a canal" loading="lazy">
-            <div class="card-body">
-              <h3>King's Island Development</h3>
-              <p>A neighbourhood of terraced housing, apartments, green streets and a canal-side boulevard.</p>
-            </div>
-          </a>
-          <a class="card" href="#p-ntc">
-            <img class="card-thumb" src="assets/img/civic-2-thumb.webp" alt="Aerial render of the National Technology Center with its round building" loading="lazy">
-            <div class="card-body">
-              <h3>National Technology Center</h3>
-              <p>Campus blocks, a curved timber hall and stepped public squares around a round courtyard building.</p>
-            </div>
-          </a>
-          <a class="card" href="#p-dod">
-            <img class="card-thumb" src="assets/img/dod-1-thumb.webp" alt="Model render from the Department of Defense internship" loading="lazy">
-            <div class="card-body">
-              <h3>Internship: Department of Defense</h3>
-              <p>Design models, renders and the completed building from my internship.</p>
-            </div>
-          </a>
-        </div>
+        <nav class="project-index" aria-label="Projects">
+          <div><span class="group-label">Jewelry Design</span>
+            <a href="#p-ring">Crystal Ring</a><a href="#p-keiso">Keisō: Diatom Jewellery</a></div>
+          <div><span class="group-label">Architecture</span>
+            <a href="#p-kings-island">King's Island Development</a><a href="#p-ntc">National Technology Center</a><a href="#p-dod">Internship: Department of Defense</a></div>
+        </nav>
 
-        <!-- Project sliders: swipe, use the arrows or press play; click a slide to open it full size -->
+        <h3 class="group-heading" id="jewelry">Jewelry Design</h3>
         <article class="project" id="p-ring">
           <div class="project-head">
             <h3>Crystal Ring</h3>
@@ -139,6 +104,7 @@
           </div></div>
         </article>
 
+        <h3 class="group-heading" id="architecture">Architecture</h3>
         <article class="project" id="p-kings-island">
           <div class="project-head">
             <h3>King's Island Development</h3>
