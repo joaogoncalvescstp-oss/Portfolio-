@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>João Lleto — Portfolio</title>
+  <meta name="description" content="Portfolio of João Lleto — 3D design, modelling and visualisation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.webgpu.js",
+        "three/webgpu": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.webgpu.js",
+        "three/tsl": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.tsl.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#top">JL<span>.</span></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#viewer">3D Viewer</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO: animated WebGPU particle field behind the headline -->
+    <section class="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <p class="eyebrow">Portfolio · 3D Design</p>
+        <h1>João <span class="grad">Lleto</span></h1>
+        <p class="lead">3D modelling, product design and real-time visualisation.</p>
+        <div class="cta">
+          <a class="btn primary" href="#viewer">Explore the model</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#about" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container two-col">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>Designing objects you can hold — and spin.</h2>
+        </div>
+        <div class="prose">
+          <!-- TODO: replace with the bio from the old Wix site -->
+          <p>Hi, I'm João. I design and model 3D objects, from concept sketches to production-ready meshes.
+             This site replaces my old Wix page with something faster, and every model is shown in a real-time viewer.</p>
+          <ul class="tags">
+            <li>3D Modelling</li><li>Product Design</li><li>CAD</li><li>Rendering</li><li>Vectary</li><li>WebGPU</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section alt">
+      <div class="container">
+        <p class="eyebrow">Selected work</p>
+        <h2>Projects</h2>
+        <div class="grid">
+          <!-- TODO: replace these cards with projects from the old site -->
+          <article class="card featured">
+            <div class="card-thumb thumb-a"></div>
+            <div class="card-body">
+              <h3>Crystal Ring</h3>
+              <p>A ring with a crown of crystal growth, modelled in Vectary. Spin it in 3D below.</p>
+              <a href="#viewer" class="link">Open in viewer →</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-thumb thumb-b"></div>
+            <div class="card-body">
+              <h3>Project Two</h3>
+              <p>Short description of the project, tools used and outcome.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-thumb thumb-c"></div>
+            <div class="card-body">
+              <h3>Project Three</h3>
+              <p>Short description of the project, tools used and outcome.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D VIEWER -->
+    <section id="viewer" class="section">
+      <div class="container">
+        <p class="eyebrow">Interactive</p>
+        <h2>3D Model Viewer</h2>
+        <p class="muted">Drag to rotate · scroll or pinch to zoom · right-drag to pan.</p>
+
+        <div class="viewer" id="viewer-wrap">
+          <canvas id="viewer-canvas"></canvas>
+          <div class="viewer-loading" id="viewer-loading">
+            <div class="spinner"></div>
+            <span id="viewer-progress">Loading model…</span>
+          </div>
+          <div class="badge" id="renderer-badge">—</div>
+          <div class="toolbar" role="toolbar" aria-label="Viewer controls">
+            <button id="btn-rotate" class="active" title="Auto-rotate">⟳ Auto-rotate</button>
+            <button id="btn-wire" title="Wireframe">◇ Wireframe</button>
+            <button id="btn-reset" title="Reset view">⌖ Reset</button>
+            <div class="swatches" aria-label="Material">
+              <button class="swatch active" data-color="#c0c0c0" data-metal="1" data-rough="0.18" style="--c:#c0c0c0" title="Silver"></button>
+              <button class="swatch" data-color="#d4a64a" data-metal="1" data-rough="0.22" style="--c:#d4a64a" title="Gold"></button>
+              <button class="swatch" data-color="#b87355" data-metal="1" data-rough="0.3" style="--c:#b87355" title="Copper"></button>
+              <button class="swatch" data-color="#1b1d22" data-metal="0" data-rough="0.45" style="--c:#1b1d22" title="Matte black"></button>
+              <button class="swatch" data-color="#f2f2f2" data-metal="0" data-rough="0.6" style="--c:#f2f2f2" title="Clay"></button>
+            </div>
+            <button id="btn-full" title="Fullscreen">⤢</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section alt">
+      <div class="container contact">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's build something.</h2>
+        <!-- TODO: confirm contact details -->
+        <a class="btn primary big" href="mailto:you@example.com">you@example.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> João Lleto · Rendered with WebGPU</p>
+  </footer>
+
+  <script type="module" src="js/hero.js"></script>
+  <script type="module" src="js/viewer.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
