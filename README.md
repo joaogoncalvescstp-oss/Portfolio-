@@ -18,7 +18,7 @@ Push to GitHub and enable **Settings → Pages → Deploy from branch** (root fo
 
 ## The model
 
-`assets/models/model.glb` was converted from the original Vectary export (`Project Name.obj`, 176 MB, 821k triangles) with:
+`assets/models/ring.glb` was converted from the original Vectary export (`Project Name.obj`, 176 MB, 821k triangles) with:
 
 ```sh
 npx obj2gltf -i "Project Name.obj" -o raw.glb
@@ -26,11 +26,13 @@ npx obj2gltf -i "Project Name.obj" -o raw.glb
 npx @gltf-transform/cli join raw.glb b.glb
 npx @gltf-transform/cli weld b.glb c.glb
 npx @gltf-transform/cli simplify c.glb d.glb --ratio 0.35 --error 0.0005
-npx @gltf-transform/cli meshopt d.glb model.glb
+npx @gltf-transform/cli meshopt d.glb ring.glb
 ```
 
-The result is 1.8 MB with about 290k triangles. To show a different model, replace the file or change `MODEL_URL` in `js/viewer.js`.
+The result is 1.8 MB with about 290k triangles. To show a different model, replace the file or edit `MODELS` in `js/viewer.js`.
 
 ## Editing content
 
 Text placeholders are marked `TODO` in `index.html` (bio, contact email). Project photos live in `assets/img/` as WebP (full size plus an 800px `-thumb`), resized and stripped of metadata from the originals.
+
+`assets/models/cabinet.glb` (the mosaic cabinet) came from a second Vectary export. Its studio backdrop was removed, the two diffuse textures it uses were resized to 1024 px, and it was compressed with `gltf-transform meshopt` (1.1 MB). It keeps its original materials, so the colour swatches are hidden for it.

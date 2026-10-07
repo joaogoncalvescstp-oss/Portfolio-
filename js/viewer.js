@@ -7,7 +7,12 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 
-const MODEL_URL = 'assets/models/model.glb';
+// Models shown in the viewer. `finish: true` swaps in the swatch material;
+// otherwise the model keeps the materials and textures it was exported with.
+const MODELS = {
+  ring: { url: 'assets/models/ring.glb', finish: true },
+  cabinet: { url: 'assets/models/cabinet.glb', finish: false },
+};
 const FIT_SIZE = 4; // model is scaled so its largest side is this many units
 
 const wrap = document.getElementById('viewer-wrap');
@@ -54,7 +59,11 @@ const material = new THREE.MeshPhysicalNodeMaterial({
   color: 0xc0c0c0, metalness: 1, roughness: 0.18, clearcoat: 0.6, clearcoatRoughness: 0.1
 });
 
+const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+const loaded = {}; // id -> scene, cached after first load
 let model = null;
+let current = null;
+let wireframe = false;
 const home = { position: new THREE.Vector3(), target: new THREE.Vector3() };
 
 function frame() {
@@ -70,24 +79,53 @@ function frame() {
   shadow.scale.setScalar(Math.max(size.x, size.z) * 1.6);
 }
 
-async function loadModel() {
-  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-  const gltf = await loader.loadAsync(MODEL_URL, (e) => {
-    if (e.total) progressEl.textContent = `Loading model… ${Math.round((e.loaded / e.total) * 100)}%`;
-  });
-  model = gltf.scene;
-  model.traverse((o) => { if (o.isMesh) o.material = material; });
+function meshMaterials(root) {
+  const list = [];
+  root.traverse((o) => { if (o.isMesh) list.push(...[].concat(o.material)); });
+  return list;
+}
 
-  // Center on the floor and normalise scale
-  const box = new THREE.Box3().setFromObject(model);
-  const size = box.getSize(new THREE.Vector3());
-  const center = box.getCenter(new THREE.Vector3());
-  const s = FIT_SIZE / Math.max(size.x, size.y, size.z);
-  model.scale.setScalar(s);
-  model.position.set(-center.x * s, -box.min.y * s, -center.z * s);
+function applyWireframe() {
+  if (!model) return;
+  for (const m of meshMaterials(model)) { m.wireframe = wireframe; m.needsUpdate = true; }
+}
+
+async function loadModel(id) {
+  if (!loaded[id]) {
+    loadingEl.classList.remove('done');
+    progressEl.textContent = 'Loading model…';
+    const gltf = await loader.loadAsync(MODELS[id].url, (e) => {
+      if (e.total) progressEl.textContent = `Loading model… ${Math.round((e.loaded / e.total) * 100)}%`;
+    });
+    const root = gltf.scene;
+    if (MODELS[id].finish) root.traverse((o) => { if (o.isMesh) o.material = material; });
+
+    // Center on the floor and normalise scale
+    const box = new THREE.Box3().setFromObject(root);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    const s = FIT_SIZE / Math.max(size.x, size.y, size.z);
+    root.scale.setScalar(s);
+    root.position.set(-center.x * s, -box.min.y * s, -center.z * s);
+    loaded[id] = root;
+  }
+  if (current !== id) return; // another tab was picked while this one loaded
+  if (model) scene.remove(model);
+  model = loaded[id];
   scene.add(model);
+  applyWireframe();
   frame();
   loadingEl.classList.add('done');
+}
+
+function showModel(id) {
+  current = id;
+  document.querySelectorAll('.model-tab').forEach((t) => t.classList.toggle('active', t.dataset.model === id));
+  wrap.querySelector('.swatches').hidden = !MODELS[id].finish;
+  loadModel(id).catch((err) => {
+    console.error(err);
+    progressEl.textContent = 'Could not load the model.';
+  });
 }
 
 function resize() {
@@ -113,9 +151,9 @@ controls.addEventListener('start', () => {
 
 const btnWire = document.getElementById('btn-wire');
 btnWire.addEventListener('click', () => {
-  material.wireframe = !material.wireframe;
-  material.needsUpdate = true;
-  btnWire.classList.toggle('active', material.wireframe);
+  wireframe = !wireframe;
+  applyWireframe();
+  btnWire.classList.toggle('active', wireframe);
 });
 
 document.getElementById('btn-reset').addEventListener('click', () => {
@@ -133,6 +171,10 @@ document.querySelectorAll('.swatch').forEach((sw) => {
     material.metalness = Number(sw.dataset.metal);
     material.roughness = Number(sw.dataset.rough);
   });
+});
+
+document.querySelectorAll('[data-model]').forEach((el) => {
+  el.addEventListener('click', () => showModel(el.dataset.model));
 });
 
 document.getElementById('btn-full').addEventListener('click', () => {
@@ -158,7 +200,4 @@ renderer.setAnimationLoop(() => {
   renderer.render(scene, camera);
 });
 
-loadModel().catch((err) => {
-  console.error(err);
-  progressEl.textContent = 'Could not load the model.';
-});
+showModel('ring');

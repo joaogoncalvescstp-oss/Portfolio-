@@ -134,6 +134,12 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
 .lightbox.single .lb-prev, .lightbox.single .lb-next { display: none; }
 
 /* VIEWER */
+.model-tabs { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid var(--line); width: fit-content; max-width: 100%; overflow-x: auto; }
+.model-tab { font: 600 0.9rem Inter, sans-serif; color: var(--muted); background: var(--surface); border: 0; padding: 0.7em 1.2em; cursor: pointer; white-space: nowrap; }
+.model-tab + .model-tab { border-left: 1px solid var(--line); }
+.model-tab:hover { color: var(--text); }
+.model-tab.active { color: var(--text); background: rgba(124, 92, 255, 0.35); }
+.swatches[hidden] { display: none; }
 .viewer {
   position: relative; width: 100%; aspect-ratio: 16 / 9; min-height: 420px;
   overflow: hidden; border: 1px solid var(--line);
